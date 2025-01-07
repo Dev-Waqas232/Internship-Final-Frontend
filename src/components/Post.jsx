@@ -10,7 +10,7 @@ const Post = ({ post }) => {
   const { isAuthenticated, user } = useAuth();
   const { content, author, createdAt, likes } = post;
   const [isLiked, setIsLiked] = useState(
-    likes.includes(user._id) ? true : false
+    likes.includes(user?._id) ? true : false
   );
   const [likeCount, setLikeCount] = useState(likes?.length || 0);
   const location = useLocation();
@@ -22,7 +22,7 @@ const Post = ({ post }) => {
 
   const handleLike = async () => {
     try {
-      const response = await axiosInstance.patch(`/posts/${post._id}`);
+      const response = await axiosInstance.patch(`/posts/${post?._id}`);
       toast.success(response.data.message);
       setIsLiked(true);
       setLikeCount((prev) => prev + 1);

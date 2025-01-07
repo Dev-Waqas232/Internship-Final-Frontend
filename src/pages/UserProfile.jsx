@@ -16,7 +16,7 @@ const UserProfile = () => {
         setUser(userResponse.data.data);
 
         const postsResponse = await axiosInstance.get(
-          `/posts?user=${userResponse.data.data._id}`
+          `/posts?user=${userResponse.data.data?._id}`
         );
         setPosts(postsResponse.data.data);
 
@@ -61,7 +61,7 @@ const UserProfile = () => {
           {posts?.length === 0 ? (
             <p className="text-gray-400">No posts available.</p>
           ) : (
-            posts.map((post) => <Post key={post._id} post={post} />)
+            posts.map((post) => <Post key={post?._id} post={post} />)
           )}
         </div>
       </div>
