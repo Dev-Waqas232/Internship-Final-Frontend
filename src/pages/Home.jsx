@@ -29,7 +29,13 @@ export default function Home() {
     <div className="bg-gray-900 w-full min-h-screen flex flex-col items-center">
       <Navbar />
       <div className="w-full mt-4 md:max-w-3xl px-4">
-        {isLoading ? <Spinner /> : <PostList posts={posts} />}
+        {isLoading ? (
+          <Spinner />
+        ) : posts?.length === 0 ? (
+          <p className="text-gray-400">No posts available.</p>
+        ) : (
+          <PostList posts={posts} />
+        )}
       </div>
     </div>
   );
